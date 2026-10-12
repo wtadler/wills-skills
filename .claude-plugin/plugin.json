@@ -1,0 +1,7 @@
+{
+  "name": "wills-skills",
+  "description": "Personal conventions layered on superpowers and mattpocock/skills: grill-to-tickets, implement, review, ticket-factory, usage-pacing.",
+  "author": { "name": "Will Adler" },
+  "repository": "https://github.com/wtadler/wills-skills",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "wills-skills",
+  "owner": { "name": "Will Adler" },
+  "plugins": [
+    {
+      "name": "wills-skills",
+      "source": "./",
+      "description": "Personal conventions layered on superpowers and mattpocock/skills."
+    }
+  ]
+}
