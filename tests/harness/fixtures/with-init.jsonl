@@ -1,0 +1,4 @@
+{"type":"system","subtype":"init","plugins":[{"name":"wills-skills","path":"/x","source":"wills-skills@inline"},{"name":"superpowers","path":"/y","source":"superpowers@m","version":"6.4.1"}]}
+{this line starts with a brace but is not json
+{"type":"assistant","message":{"content":[{"type":"tool_use","id":"t1","name":"Skill","input":{"skill":"superpowers:test-driven-development"}}]}}
+{"type":"result","subtype":"success","is_error":false,"result":"all done"}

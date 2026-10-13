@@ -1,0 +1,12 @@
+{
+  "name": "wills-skills",
+  "owner": { "name": "Will Adler" },
+  "metadata": { "description": "Personal Claude Code conventions layered on superpowers and mattpocock/skills: grill-to-tickets, implement, review, ticket-factory, and usage-pacing." },
+  "plugins": [
+    {
+      "name": "wills-skills",
+      "source": "./",
+      "description": "Personal conventions layered on superpowers and mattpocock/skills."
+    }
+  ]
+}

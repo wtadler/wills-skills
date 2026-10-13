@@ -1,0 +1,1 @@
+You are the reviewer for branch feature/reserve. The diff package is ./review-package.md (base: origin/main; the worktree is this directory). The spec is issue #{{ISSUE_RESERVE}}. Write your full review to ./review-report.md, then reply with your summary.

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# SessionStart hook: inject the using-wills-skills router as session context.
+set -euo pipefail
+root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+python3 - "$root/skills/using-wills-skills/SKILL.md" <<'PY'
+import json, re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+body = re.sub(r"\A---\n.*?\n---\n", "", text, flags=re.S).strip()
+context = (
+    "<wills-skills>\nThe user installed wills-skills. Its using-wills-skills skill follows.\n\n"
+    + body + "\n</wills-skills>"
+)
+print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": context}}))
+PY
