@@ -9,8 +9,7 @@
    URL (e.g. `?source=limit_probe`), each in its own file, so every run compares
    all known entries (`$TMPDIR/claude_usage_cachefiles.json`) plus files written in
    the last 4 hours, and takes the newest by `date:` header. A full-cache grep
-   (~3s) only runs when nothing is known. (Until 2026-10-05 it trusted one
-   remembered path and reported a 3-week-old reading.)
+   (~3s) only runs when nothing is known.
 2. Locates the zstd frame (`28 b5 2f fd`) in the entry and decompresses it
    (Node ≥24 native `zlib.zstdDecompressSync`, else the `zstd` CLI).
 3. Parses the JSON and the `date:` header, decides staleness, then prints full,

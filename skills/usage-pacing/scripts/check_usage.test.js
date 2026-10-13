@@ -156,7 +156,10 @@ test('hook: fresh and under 80% says healthy', () => {
 test('hook: fresh and at 80% or more gives the wrap-up warning', () => {
   const env = setup();
   writeEntry(env.cache, 'u_0', { utilization: 85, resetsAt: now + H, fetchedAt: now - MIN });
-  assert.match(hook(env), /past 80%/);
+  const msg = hook(env);
+  assert.match(msg, /past 80%/);
+  assert.match(msg, /wills-skills:usage-pacing/);
+  assert.doesNotMatch(msg, /resets_at/);
 });
 
 test('hook: stale data never claims usage is healthy', () => {
@@ -165,6 +168,8 @@ test('hook: stale data never claims usage is healthy', () => {
   const msg = hook(env);
   assert.doesNotMatch(msg, /healthy/);
   assert.match(msg, /unknown/);
+  assert.match(msg, /wills-skills:usage-pacing/);
+  assert.doesNotMatch(msg, /rate-limit/);
 });
 
 test('real Desktop cache entry still decodes (skipped if none on this machine)', (t) => {

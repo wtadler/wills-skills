@@ -40,12 +40,12 @@ if [[ "$LINE" == *"5h: unknown"* ]]; then
     (( now - last_shown < 1200 )) && exit 0
   fi
   echo "$now" > "$STAMP_SHOWN"
-  MSG="${LINE} — usage unknown. Not a reason to stop interactive work, but don't treat it as headroom; an unattended loop should rely on rate-limit errors instead."
+  MSG="${LINE} — usage unknown. Not a reason to stop interactive work; treat the reading as unknown, not headroom, per wills-skills:usage-pacing."
 elif (( PCT >= 80 )); then
   # Critical zone: re-inject on (nearly) every tool call — this is the moment that
   # mid-task focus blows past. The RUN_FLOOR above is the only throttle.
   echo "$now" > "$STAMP_SHOWN"
-  MSG="⚠️ ${LINE} — past 80% of the 5-hour window. Finish only the current step, then commit and checkpoint, and start no new expensive steps (subagent dispatch, dev server, opening a PR). In an unattended run, write a handoff and schedule a resume for just after the window resets. Keep every verification gate. Trust resets_at over a stale 'as of' stamp."
+  MSG="⚠️ ${LINE} — past 80% of the 5-hour window. Finish only the current step, then commit and checkpoint per wills-skills:usage-pacing (an orchestrator also schedules the resume), and start no new expensive steps (subagent dispatch, dev server, opening a PR). Keep every verification gate."
 else
   # Healthy zone: quiet line at most every 20 min.
   if [[ -f "$STAMP_SHOWN" ]]; then
