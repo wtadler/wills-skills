@@ -1,6 +1,6 @@
 # Implementation Report: #<n> <title>
 
-- Branch: `<branch>` at `<sha>`
+- Branch: `<branch>` at `<head sha, read after the push>`
 - Status: done | checkpointed | blocked (<why>)
 
 ## Acceptance Criteria
