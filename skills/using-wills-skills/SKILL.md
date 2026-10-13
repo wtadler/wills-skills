@@ -22,6 +22,7 @@ These are the user's standing preferences. They layer on superpowers and mattpoc
 ## Where skills overlap
 - Finishing a branch: push it, open a PR into the default branch, or into the branch below in a stack (`gh pr create`), and report the link. The push-and-PR option is the user's standing answer to the superpowers:finishing-a-development-branch menu.
 - After superpowers:writing-plans, the execution method is chosen, not asked: subagent-driven by default, inline for one or two small tasks. Bounded work, and a plan the user has already approved, executes in the same turn. An architectural or multi-ticket plan ends with the plan and the chosen method, ready to start on the user's OK; once approved, it runs without asking which method.
+- Code review: wills-skills:review, which covers superpowers:requesting-code-review and mattpocock-skills:code-review.
 
 ## Skills
 Each skill below is loaded whenever there is even a small chance it applies; each scales its own steps to the stakes.
@@ -29,3 +30,4 @@ Each skill below is loaded whenever there is even a small chance it applies; eac
 | When | Skill |
 |---|---|
 | Usage questions, long or unattended runs, usage warnings | wills-skills:usage-pacing |
+| Reviewing a branch, PR, or diff | wills-skills:review |
