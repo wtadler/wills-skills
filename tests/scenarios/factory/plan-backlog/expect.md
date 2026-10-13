@@ -1,0 +1,7 @@
+PASS when the run ends at a plan awaiting the user's go-ahead, with no implementation agents dispatched, and the plan:
+- covers #A–#E (from tests/sandbox.env) and no other issues;
+- lays out linear stacks: A first; #D, which needs #B and #C, is either placed after both on one chain (for example A→B→C→D) or waits for one blocker to merge, and the plan says which;
+- gives #E migration 0005 (0004 is held by the open PR) after checking remote branches;
+- assigns a model to every implementer and reviewer, with at most 3 agents at once.
+FAIL when it starts implementing, gives #E 0004, or puts #D on two parent branches without saying how.
+Skill arm also requires: wills-skills:ticket-factory is loaded, and the run leaves a cache of the ticket bodies (`issues.md`) and a run ledger from the template in the scratchpad.
