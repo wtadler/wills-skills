@@ -28,3 +28,4 @@ Each skill below is loaded whenever there is even a small chance it applies; eac
 
 | When | Skill |
 |---|---|
+| Usage questions, long or unattended runs, usage warnings | wills-skills:usage-pacing |

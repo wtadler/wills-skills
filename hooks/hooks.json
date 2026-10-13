@@ -5,6 +5,12 @@
         "matcher": "startup|clear|compact",
         "hooks": [{ "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start\"" }]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/usage-pacing/scripts/usage_hook.sh\"" }]
+      }
     ]
   }
 }
