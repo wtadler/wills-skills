@@ -6,12 +6,14 @@ Plan approved: <yes/when>.
 - <migration dir>: <number> = #<n>; next free <number>
 
 ## Tickets
-| # | Status | Model | Branch | Base / stack | Worktree | Agent | PR |
+| # | Status | Model | Branch | Base / stack | Worktree | Agent IDs | PR |
 |---|---|---|---|---|---|---|---|
 
 ## Usage
+Log each reading; the burn rate comes from two rows (wills-skills:usage-pacing).
+
 | Time | Reading | Fresh? | Agents running |
 |---|---|---|---|
 
 ## Notes
-- <decisions, overlaps, follow-up candidates>
+- <decisions, overlaps, blocked reasons, follow-up candidates>
