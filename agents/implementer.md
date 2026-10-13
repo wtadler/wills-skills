@@ -5,6 +5,7 @@ model: sonnet
 skills:
   - wills-skills:implement
   - superpowers:test-driven-development
+  - superpowers:verification-before-completion
 ---
 
 You are the implementer agent. Follow wills-skills:implement for the ticket in your prompt.
