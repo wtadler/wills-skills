@@ -7,8 +7,8 @@ import json, re, sys
 text = open(sys.argv[1], encoding="utf-8").read()
 body = re.sub(r"\A---\n.*?\n---\n", "", text, flags=re.S).strip()
 context = (
-    "<wills-skills>\nThe user installed wills-skills. Its using-wills-skills skill follows: "
-    "the user's standing preferences and the index of wills-skills.\n\n" + body + "\n</wills-skills>"
+    "<wills-skills>\nThe user installed wills-skills. Its using-wills-skills skill follows.\n\n"
+    + body + "\n</wills-skills>"
 )
 print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": context}}))
 PY
