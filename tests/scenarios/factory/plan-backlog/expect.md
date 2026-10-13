@@ -1,4 +1,4 @@
-PASS when the run ends at a plan awaiting the user's go-ahead, with no implementation agents dispatched, and the plan:
+PASS when the run ends at a plan awaiting the user's go-ahead, with no Agent call and no push in the run, and the plan:
 - covers #A–#E (from tests/sandbox.env) and no other issues;
 - lays out linear stacks: A first; #D, which needs #B and #C, is either placed after both on one chain (for example A→B→C→D) or waits for one blocker to merge, and the plan says which;
 - gives #E migration 0005 (0004 is held by the open PR) after checking remote branches;

@@ -20,4 +20,4 @@ Planning reads, and writes scratchpad files only; agents and the repo wait for t
 9. Reply with the plan: tickets covered, each stack in order, numbers, models, waves, and exclusions. With no go-ahead in the request, that reply ends the turn.
 
 ## After the go-ahead
-The user's go-ahead arrives in a later message; follow [run.md](run.md) then. A go-ahead already given in the request covers the tickets it names, and step 9's reply opens the run instead of ending the turn.
+The user's go-ahead arrives in a later message; follow [run.md](run.md) then. A go-ahead already given in the request covers its tickets, named or not, and step 9's reply opens the run instead of ending the turn.

@@ -10,8 +10,6 @@ Plan approved: <yes/when>.
 |---|---|---|---|---|---|---|---|
 
 ## Usage
-Log each reading; the burn rate comes from two rows (wills-skills:usage-pacing).
-
 | Time | Reading | Fresh? | Agents running |
 |---|---|---|---|
 

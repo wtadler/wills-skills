@@ -3,7 +3,7 @@
 **REQUIRED SUB-SKILLS:** wills-skills:implement, wills-skills:review, wills-skills:usage-pacing, and gh-stack. The main session coordinates: implementer agents write every line of ticket code, and a reviewer agent reviews every ticket.
 
 ## Set up
-Read `run-ledger.md` and `issues.md` in the scratchpad. Request keep-awake where the host offers it. Read usage (wills-skills:usage-pacing) and log the reading in the ledger's Usage table.
+Read `run-ledger.md` and `issues.md` in the scratchpad. Request keep-awake where the host offers it.
 
 ## Per ticket
 1. Follow the main-session steps of wills-skills:implement (dispatch, read-back, review, PR), filling the dispatch fields from the ledger: cache path, branch, model, stack position, reserved number, and report paths.
@@ -17,16 +17,18 @@ Read `run-ledger.md` and `issues.md` in the scratchpad. Request keep-awake where
 | Event | Row |
 |---|---|
 | Implementer's Agent call returns | `implementing`, Agent IDs, Worktree |
-| Implementer's completion notice arrives | `reviewing` |
+| An implementer's completion notice arrives, in any round | `reviewing` |
 | Reviewer's Agent call returns | reviewer's ID added to Agent IDs |
-| SendMessage call returns | `fixing <round>` |
+| SendMessage with review findings returns | `fixing <round>` |
+| A fresh implementer's Agent call returns (rounds 4–5) | `fixing <round>`, its ID added |
+| Checkpoint message returns | `checkpointed (was <status>)` |
+| Resume message returns | the status recorded in `was` |
 | PR opened | `pr-open`, PR |
-| Usage checkpoint | `checkpointed` |
 | Blocked | `blocked`, reason in Notes |
 
 ## Discipline
-- At most one agent on opus at a time. Read usage and log it before every launch; wills-skills:usage-pacing sets the other caps and the checkpoint. After a checkpoint, the resume sends SendMessage to the `checkpointed` agents by their IDs, lowest stack position first.
-- Use absolute paths, `git -C`, and `--repo <repo>` on every `gh` call; the session's cwd stays where it started.
+- At most one agent on opus at a time. Before every launch, read usage and log it in the ledger's Usage table; the burn rate comes from two rows. wills-skills:usage-pacing sets the other caps and the checkpoint; after a checkpoint, its resume sends SendMessage to the `checkpointed` agents by their IDs, lowest stack position first.
+- Use absolute paths and `git -C`; put `--repo <repo>` on every `gh issue` and `gh pr` call and `repos/<repo>/` in every `gh api` path. The session's cwd stays where it started.
 - Batch independent calls into one message.
 - Stop any background process an agent left running once its branch is pushed.
 
