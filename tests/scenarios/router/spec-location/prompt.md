@@ -1,0 +1,1 @@
+We talked it through yesterday: the reports page needs a CSV export. Columns match the on-screen table, the file is named reports-YYYY-MM-DD.csv, and it respects the current filters. Write up the spec so we can break it into tickets later.
