@@ -1,4 +1,4 @@
-Closes #<n>. Part of #<parent>.
+Closes #<n>. Part of #<parent>. <drop "Part of" when there is no parent>
 
 ## Summary
 <2–5 sentences: what changes for users or operators, and how>
@@ -11,3 +11,5 @@ Closes #<n>. Part of #<parent>.
 
 ## Notes
 <reserved numbers; deploy order; stack position; overlaps with open PRs; choices where the ticket left one open; measurements>
+
+<the repo's attribution footer ends the body>

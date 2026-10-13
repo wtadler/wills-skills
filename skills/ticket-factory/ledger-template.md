@@ -6,7 +6,7 @@ Plan approved: <yes/when>.
 - <migration dir>: <number> = #<n>; next free <number>
 
 ## Tickets
-| # | Status | Model | Branch | Base / stack | Worktree | Agent IDs | PR |
+| # | Status | Model | Branch | Base / stack | Worktree | Agent IDs (impl, review) | PR |
 |---|---|---|---|---|---|---|---|
 
 ## Usage
