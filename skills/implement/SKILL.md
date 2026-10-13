@@ -10,7 +10,7 @@ description: Use when implementing a GitHub issue or ticket, when asked to build
 ## Where it runs
 A prompt that opens "You are the implementer", or bounded work with no ticket: implement here.
 
-Asked in the main session for a ticket (an issue number or link), dispatch and review however small or urgent; do not implement it there:
+Asked in the main session for a ticket (an issue number or link), dispatch and review however small or urgent; the main session coordinates:
 1. Dispatch an implementer: agent type `wills-skills:implementer`, or general-purpose when that type is unavailable, with `isolation: worktree` where available and `model: sonnet` unless the user names another. Open its prompt with "You are the implementer: load wills-skills:implement," then the dispatch fields.
 2. When it returns, read its report file: the reply is a pointer.
 3. Load wills-skills:review and run it on the branch. The review is the reviewer's report file, read before any PR, not your own read of the diff. Send each must-fix back to the implementer.
