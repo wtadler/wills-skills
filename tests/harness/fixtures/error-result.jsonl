@@ -1,0 +1,2 @@
+{"type":"system","subtype":"init","plugins":[{"name":"superpowers","path":"/y","source":"superpowers@m"}]}
+{"type":"result","subtype":"error_max_turns","is_error":true}

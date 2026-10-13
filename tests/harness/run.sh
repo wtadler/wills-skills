@@ -18,6 +18,12 @@ plugin_args=()
 ( cd "$work" && GH_REPO="${WSK_SANDBOX:-wtadler/wills-skills-sandbox}" \
     claude -p "$prompt" --model sonnet --output-format stream-json --verbose \
       --permission-mode bypassPermissions ${plugin_args[@]+"${plugin_args[@]}"} ) > "$out" 2>&1 || true
-python3 "$root/tests/harness/tools.py" "$out"
+digest="$(python3 "$root/tests/harness/tools.py" "$out")"
+printf '%s\n' "$digest"
 echo "transcript: $out"
 echo "workdir: $work"
+if [[ "$arm" == baseline ]]; then
+  case "$(printf '%s\n' "$digest" | head -n 1)" in
+    *wills-skills*) echo "INVALID BASELINE: wills-skills loaded" >&2; exit 1 ;;
+  esac
+fi
