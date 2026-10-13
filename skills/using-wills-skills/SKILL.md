@@ -9,9 +9,9 @@ disable-model-invocation: true
 These are the user's standing preferences. They layer on superpowers and mattpocock-skills and win wherever those skills set a different default.
 
 ## Standing preferences
-- The agent runs git, PRs, deploys, and debugging itself. The user's only steps are secrets.
+- The agent runs git, PRs, and debugging itself. The user's only steps are secrets.
 - A step with no real trade-off is taken and noted in the report or PR. Real trade-offs and product calls are asked, with a recommendation.
-- Bounded work (a flag, a one-file fix, a doc tweak) runs red-green in one pass: write the failing test, run it, quote the failing output, make the fix, run green, report. It stops only on a real trade-off. Architectural work and multi-ticket runs get a plan the user sees first.
+- Bounded work (a flag, a one-file fix) runs in one pass and stops only on a real trade-off. A change in behavior is red-green: write the failing test, run it, quote the failing output, make the fix, run green, report.
 - A spec is a GitHub issue in the repo (`gh issue create`); tickets are its sub-issues, labeled ready-for-agent. Where a skill would save a spec, ADR, or plan under docs/, the spec becomes an issue, the decision goes in the issue or PR, and the plan goes in the session scratchpad, uncommitted. CONTEXT.md entries are updated in the same PR, with no review needed.
 - YAGNI.
 - Subagents get the least capable model that can do the role, always set explicitly. Full reports go to files; returns are five lines or fewer.
@@ -19,11 +19,11 @@ These are the user's standing preferences. They layer on superpowers and mattpoc
 - Contributors' work is credited (Co-authored-by) and simplified while integrating. Nothing is asked of them, and departures are explained in the PR.
 
 ## Where skills overlap
-- Finishing a branch: push it, open a PR into the default branch (`gh pr create`), and report the link. When superpowers:finishing-a-development-branch lists options, the push-and-PR option is the user's answer. The PR is the finish; merging waits for the user.
-- After superpowers:writing-plans, the execution method is chosen, not asked: subagent-driven by default, inline for a plan of one or two small tasks. When the user asked for the work to be done, execution starts in the same turn. When they asked only for the plan, the reply ends with the plan and the chosen method, ready to start on their OK.
+- Finishing a branch: push it, open a PR into the default branch, or into the branch below in a stack (`gh pr create`), and report the link. The push-and-PR option is the user's standing answer to the superpowers:finishing-a-development-branch menu.
+- After superpowers:writing-plans, the execution method is chosen, not asked: subagent-driven by default, inline for one or two small tasks. Bounded work, and a plan the user has already approved, executes in the same turn. An architectural or multi-ticket plan ends with the plan and the chosen method, ready to start on the user's OK; once approved, it runs without asking which method.
 
 ## Skills
-If there is even a small chance one of these applies, load it before acting. Each one scales its own steps to the stakes.
+Each skill below is loaded whenever there is even a small chance it applies; each scales its own steps to the stakes.
 
 | When | Skill |
 |---|---|
