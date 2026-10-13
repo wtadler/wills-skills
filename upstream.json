@@ -1,0 +1,26 @@
+{
+  "upstreams": [
+    {
+      "url": "https://github.com/obra/superpowers",
+      "lastChecked": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "paths": [
+        "skills/test-driven-development", "skills/verification-before-completion", "skills/using-git-worktrees",
+        "skills/brainstorming", "skills/writing-plans", "skills/finishing-a-development-branch",
+        "skills/requesting-code-review", "skills/using-superpowers", "hooks"
+      ]
+    },
+    {
+      "url": "https://github.com/mattpocock/skills",
+      "lastChecked": "49dd158d1076134a641b33efb035946536778336",
+      "paths": [
+        "skills/productivity/grilling", "skills/engineering/domain-modeling", "skills/engineering/research",
+        "skills/engineering/code-review", "skills/engineering/tdd", "skills/engineering/to-spec", "skills/engineering/to-tickets"
+      ]
+    },
+    {
+      "url": "https://github.com/github/gh-stack",
+      "lastChecked": "29a36d314be664583705f18e41cebdf2b61ad514",
+      "paths": ["skills/gh-stack"]
+    }
+  ]
+}
