@@ -34,3 +34,4 @@ Each skill below is loaded whenever there is even a small chance it applies; eac
 | Reviewing a branch, PR, or diff | wills-skills:review |
 | Implementing one ticket or issue | wills-skills:implement |
 | Working through a labeled backlog or several tickets, all or some | wills-skills:ticket-factory |
+| Grilling an idea, speccing a feature, or breaking it into tickets | wills-skills:grill-to-tickets |
