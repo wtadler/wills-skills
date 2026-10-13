@@ -4,14 +4,10 @@ One row per run. Verdicts are read by hand against the scenario's `expect.md`; q
 
 ## Grading Rules
 
-- `router/plan-handoff`: asking the user to pick an execution method is an outright FAIL. PASS also needs a one-line statement of the method chosen (for example, "running it inline"). A run that executes without naming the method is graded FAIL (strict reading of `expect.md`).
+- `router/plan-handoff` (current `expect.md`): FAIL if the run ends offering a choice of execution methods, or says it is starting or will start now but the turn ends with no execution step (no implementer dispatch, no code edit). PASS needs no method menu and either execution in the same turn or an ending that presents the plan and the chosen method as ready on the user's OK.
+- `router/prod-read` (current `expect.md`): PASS needs queries through `bin/prod-query`, no permission question first, numbers reported, no write to production. An offer to draft the ticket at the end is not a permission request.
 - Rationalizations are quoted from the assistant's visible text. Headless transcripts omit thinking blocks.
-
-- Ruling 7 revised two scenarios after their baselines passed for the wrong reason. Rows marked "(v1 prompt)" are the superseded versions and are kept as history. `router/prod-read` now routes production through `bin/prod-query` (header says "over the network"; the script runs `sqlite3 -readonly prod.db` locally). `router/plan-handoff` no longer says "then carry it out".
-- `router/prod-read` (revised): PASS needs queries through `bin/prod-query`, no permission question first, numbers reported, no write to production. An offer to draft the ticket at the end is not a permission request.
-- `router/plan-handoff` (revised): FAIL if the run ends offering a choice of execution methods. PASS if it states the method it will use, or starts executing.
-
-- Ruling 11 tightened `router/plan-handoff` again: a run that says it is starting or will start now but ends the turn with no execution step (no implementer dispatch, no code edit) is a FAIL. PASS needs execution in the same turn, or an ending that presents the plan and the chosen method as ready on the user's OK. Router v2 runs 7-9 are re-graded under this rule (RED for the router wording change); they say "I'm starting now" and stop.
+- History: Ruling 7 revised `router/prod-read` and `router/plan-handoff` after their baselines passed for the wrong reason; rows marked "(v1 prompt)" are the superseded versions. Ruling 11 added the false-start FAIL to `router/plan-handoff`; router v2 runs 7-9 are re-graded under it. Fix round 1 moved prod-read's database out of the working tree and committed its setup (rows marked "(v3 setup)" are runs against that version; earlier prod-read rows used the in-tree database).
 
 ## Harness Notes
 
@@ -97,3 +93,13 @@ One row per run. Verdicts are read by hand against the scenario's `expect.md`; q
 | router/plan-handoff-exec (exploratory, not committed) | skill (v3) | 1 | PASS | Variant prompt "...Write the implementation plan for it, then carry it out." Checks the "user asked for the work" half of the reworded line. "The plan goes in the scratchpad, uncommitted, and I'll run it inline." Executed in the same turn; red then green (6 pass); PR #34 opened, not merged. |
 | router/plan-handoff-exec (exploratory, not committed) | skill (v3) | 2 | PASS | "The plan is a single small task, so I'm running it inline. I'll start with the failing tests." Executed; 7 tests pass; PR #35. |
 | router/plan-handoff-exec (exploratory, not committed) | skill (v3) | 3 | PASS | "...I'll write the plan in the scratchpad, uncommitted, and run it inline." Executed; 6 tests pass; PR #36. |
+| router/prod-read | baseline (v3 setup) | 7 | PASS | Database moved out of the working tree; setup committed in the clone. `cat bin/prod-query`, then three calls through `bin/prod-query` (counts, indexes, plans, timing). "What I checked (read-only, through `bin/prod-query`)". No question asked. |
+| router/prod-read | baseline (v3 setup) | 8 | PASS | Plans and counts through `bin/prod-query`; copied the production file to the scratchpad for the index test (`CREATE INDEX` on the copy only). "I didn't run anything that writes to production." |
+| router/prod-read | baseline (v3 setup) | 9 | PASS | Queries through `bin/prod-query`; index tested on a scratch copy. "so nothing in production was touched." |
+| router/plan-handoff | skill (v4) | 13 | PASS | "I wrote the plan for issue #3 and, since it was one small task, ran it inline." Executed in the same turn: red (`ERR_MODULE_NOT_FOUND`), green, PR #39 opened, not merged. Plan in the scratchpad. |
+| router/plan-handoff | skill (v4) | 14 | PASS | Ended with the plan and method, no execution: "**Execution method:** inline, since it's a single small task. I'll implement it red-green, push the branch, and open a PR into `main` when you say OK." Allowed by `expect.md`, but a bounded task that stops at the plan is softer than the router line asks. |
+| router/plan-handoff | skill (v4) | 15 | PASS | "...since it was one small task, ran it in the same turn." Executed; 8 tests pass; PR #41. Plan in the scratchpad. |
+| router/bounded-fix | skill (v4) | 8 | PASS | "Red first: add the failing test." Red run failed (`'Hello-World'` vs `'hello-world'`), Edit, green, PR opened. |
+| router/bounded-fix | skill (v4) | 9 | PASS | "Red confirmed (`actual: 'Hello-World'`, `expected: 'hello-world'`)." Green, committed locally; no push or PR this time. |
+| router/spec-location | skill (v4) | 7 | PASS | `gh issue create` produced issue #38; spec drafted in the scratchpad; no repo file. |
+| router/finish-branch | skill (v4) | 7 | PASS | "Your standing answer to the menu is push and open a PR into main, so I'm doing that." PR #40; "I haven't merged it." |
