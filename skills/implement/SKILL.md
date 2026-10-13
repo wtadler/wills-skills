@@ -32,7 +32,7 @@ On a usage warning or checkpoint message, checkpoint per wills-skills:usage-paci
 ## Report and reply
 Fill in [report-template.md](report-template.md) at your prompt's report path.
 
-The whole reply, the implementer's and the orchestrator's, is five lines at most, with no blank lines. Line 1: status and a one-line test summary. Line 2: branch and head SHA, or the PR URL. Line 3: the report path. Lines 4-5: blockers or open must-fix findings, one line each; with none, stop at line 3. Consider findings go in the PR's Notes; the rest stays in the report.
+The implementer's whole reply is five lines at most, with no blank lines. Line 1: status and a one-line test summary. Line 2: branch and head SHA, or the PR URL. Line 3: the report path. Lines 4-5: blockers or open must-fix findings, one line each; with none, stop at line 3. Consider findings go in the PR's Notes; the rest stays in the report.
 
 ## Opening the PR
 When told to: title = the issue title; body = [pr-template.md](pr-template.md); base = the default branch, or the branch below in a stack (`gh stack submit`, via gh-stack).

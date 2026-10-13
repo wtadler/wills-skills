@@ -32,7 +32,7 @@ Stacked PRs need `gh` 2.90.0 or later, `gh extension install github/gh-stack`, a
 | `implement` | One ticket to a pushed branch, evidenced red-green |
 | `review` | One reviewer, two axes, adversarial probes |
 | `ticket-factory` | Labeled backlog → stacked, reviewed PRs, paced to the usage window |
-| `usage-pacing` | Usage reader, hook, and pacing rules (macOS + Claude Desktop) |
+| `usage-pacing` | Pacing rules and hook; reads usage from the host's session usage tool when offered, else from Claude Desktop's on-disk cache (macOS) |
 | `implementer`, `reviewer` agents | Sonnet by default; callers raise the model by risk |
 
 ## Staying current
