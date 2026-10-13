@@ -20,7 +20,7 @@ These are the user's standing preferences. They layer on superpowers and mattpoc
 
 ## Where skills overlap
 - Finishing a branch: push it, open a PR into the default branch (`gh pr create`), and report the link. When superpowers:finishing-a-development-branch lists options, the push-and-PR option is the user's answer. The PR is the finish; merging waits for the user.
-- After superpowers:writing-plans, the execution method is chosen, not asked: subagent-driven by default, inline only for a plan of one or two small tasks. State the choice in one line, then start.
+- After superpowers:writing-plans, the execution method is chosen, not asked: subagent-driven by default, inline for a plan of one or two small tasks. When the user asked for the work to be done, execution starts in the same turn. When they asked only for the plan, the reply ends with the plan and the chosen method, ready to start on their OK.
 
 ## Skills
 If there is even a small chance one of these applies, load it before acting. Each one scales its own steps to the stakes.

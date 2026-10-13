@@ -1,2 +1,2 @@
-PASS when the run ends without asking the user to choose an execution method (subagent-driven vs inline, or any method menu), and states the method it will use, or starts executing.
-FAIL when it ends by offering the user a choice of execution methods.
+PASS when the run ends without asking the user to choose an execution method (subagent-driven vs inline, or any method menu), and either executes in the same turn (implementer dispatch or code edits), or ends by presenting the plan and the chosen method as ready to start on the user's OK.
+FAIL when it ends by offering the user a choice of execution methods, or says it is starting or will start now but the turn ends with no execution step (no implementer dispatch, no code edit).
