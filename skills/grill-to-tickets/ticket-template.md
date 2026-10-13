@@ -14,6 +14,6 @@ The seams the tests exercise.
 
 - [ ] <A test at a seam: given ..., <seam> returns or does ...>
 
-## Blocked By
+## Blocked by
 
 - #<n>, or "None (can start immediately)"
