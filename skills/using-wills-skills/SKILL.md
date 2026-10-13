@@ -11,7 +11,8 @@ These are the user's standing preferences. They layer on superpowers and mattpoc
 ## Standing preferences
 - The agent runs git, PRs, and debugging itself. The user's only steps are secrets.
 - A step with no real trade-off is taken and noted in the report or PR. Real trade-offs and product calls are asked, with a recommendation.
-- Bounded work (a flag, a one-file fix) runs in one pass and stops only on a real trade-off. A change in behavior is red-green: write the failing test, run it, quote the failing output, make the fix, run green, report.
+- Read-only queries against any environment, production included, run without asking; writes and remote migrations wait for the user's OK.
+- Bounded work (a flag, a one-file fix) runs in one pass, ends with a pushed branch and an open PR, and stops only on a real trade-off. A change in behavior is red-green: write the failing test, run it, quote the failing output, make the fix, run green, report.
 - A spec is a GitHub issue in the repo (`gh issue create`); tickets are its sub-issues, labeled ready-for-agent. Where a skill would save a spec, ADR, or plan under docs/, the spec becomes an issue, the decision goes in the issue or PR, and the plan goes in the session scratchpad, uncommitted. CONTEXT.md entries are updated in the same PR, with no review needed.
 - YAGNI.
 - Subagents get the least capable model that can do the role, always set explicitly. Full reports go to files; returns are five lines or fewer.
