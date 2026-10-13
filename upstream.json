@@ -6,7 +6,7 @@
       "paths": [
         "skills/test-driven-development", "skills/verification-before-completion", "skills/using-git-worktrees",
         "skills/brainstorming", "skills/writing-plans", "skills/finishing-a-development-branch",
-        "skills/requesting-code-review", "skills/using-superpowers", "hooks"
+        "skills/requesting-code-review", "skills/using-superpowers", "skills/subagent-driven-development", "hooks"
       ]
     },
     {
