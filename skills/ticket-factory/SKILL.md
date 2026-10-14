@@ -8,9 +8,9 @@ description: Use when asked to work through a labeled backlog, ready-for-agent i
 A labeled backlog becomes reviewed, stacked PRs, paced to the usage window. This file is the plan. `<repo>` is the backlog's owner/name (`gh repo view --json nameWithOwner`).
 
 ## Plan
-Planning reads, and writes scratchpad files only; agents and the repo wait for the go-ahead.
+Planning reads, and writes scratchpad files only, apart from step 2's worktree sweep; agents and the repo wait for the go-ahead.
 1. Backlog: `gh issue list --repo <repo> --label <label> --state open --limit 200 --json number,title`, with `ready-for-agent` as the default label. Cache each ticket and its parent into `issues.md` in the scratchpad under `=========== #<n>` headings, from `gh issue view <n> --repo <repo> --json title,body,comments` (plain `gh issue view` can print nothing). Agents read this file instead of calling `gh`.
-2. `git fetch --prune`, then read remote state from the fresh refs.
+2. `git fetch --prune`, then read remote state from the fresh refs. Sweep agent worktrees (those under the host's agent-worktree directory, such as `.claude/worktrees/`): remove each one whose branch has a merged or closed PR and no open one (`gh pr list --repo <repo> --head <branch> --state all --json state`) with `git worktree remove` (never `--force`; one with uncommitted changes stays and the plan lists it), then `git worktree prune`. Branches stay. Each worktree carries its own dependencies, so leftovers fill the disk.
 3. Blockers: the native links (`gh api repos/<repo>/issues/<n>/dependencies/blocked_by`), else the "Blocked by" lines. Overlap: `gh pr list --repo <repo>`, then `gh pr diff <n> --repo <repo> --name-only` for each open PR.
 4. Stacks: a stack is one linear chain, and each dependency chain becomes one. A ticket blocked on two chains goes after both on one chain, or waits for one blocker to merge; the plan says which.
 5. Migrations: the numbers taken are those on the default branch, on every remote branch, and in open PRs. Give each migrating ticket the next free number, so parallel agents never collide; the ledger records them.
