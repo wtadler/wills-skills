@@ -5,10 +5,9 @@
 //
 // Claude Desktop fetches https://claude.ai/api/organizations/{org}/usage itself
 // and stores the (zstd-compressed) JSON response in its Chromium HTTP cache on
-// disk. We read that cached response directly. This sidesteps the OAuth
-// endpoint's rate limit AND Cloudflare's bot challenge (the desktop app already
-// solved both). The only cost is freshness: the data is as recent as the app's
-// last fetch, so we always surface the response's `date:` header as "as of".
+// disk. We read that cached response directly and make no request of our own.
+// The only cost is freshness: the data is as recent as the app's last fetch,
+// so we always surface the response's `date:` header as "as of".
 //
 // Usage:
 //   node check_usage.js            → full JSON + summary (for the skill)
