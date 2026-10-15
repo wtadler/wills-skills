@@ -10,18 +10,18 @@ It is not a standalone skill set. It sits on top of [superpowers](https://github
 
 ```mermaid
 flowchart LR
-  idea([Idea]) --> G
   subgraph start [You, at the keyboard]
     G[grill-to-tickets]
   end
-  G -- spec issue and tickets --> T
   subgraph middle [You walk away: minutes to days]
     T[tickets-to-prs]
   end
-  T -- reviewed, stacked PRs --> P
   subgraph finish [You, eyeballing staging]
     P[prs-to-main]
   end
+  idea([Idea]) --> G
+  G -- spec issue and tickets --> T
+  T -- reviewed, stacked PRs --> P
   P --> main([main])
 ```
 
@@ -54,7 +54,7 @@ Installed together, they overlap and sometimes pull in opposite directions: two 
 | `implement` | `test-driven-development`, `verification-before-completion` | | Dispatch to an implementer subagent in a worktree, red evidence quoted per acceptance criterion, review before any PR, and a bounded fix loop that escalates the model |
 | `review` | Replaces `requesting-code-review` | `code-review` supplies the two axes and standards sources | One fresh-context reviewer for every diff, adversarial probes, must-fix and consider tags, and a reviewer model chosen by risk |
 | `tickets-to-prs` (formerly `ticket-factory`) | The implementer-plus-reviewer loop of `subagent-driven-development` | Consumes the ready-for-agent tickets `grill-to-tickets` files | Backlog planning into stacks with [gh-stack](https://github.com/github/gh-stack), migration-number reservation, waves, worktree cleanup, and a run ledger |
-| `prs-to-main` | `verification-before-completion` | | Chunks chosen from a pairwise merge-test of the open PRs, review of any unreviewed PR before staging, one tested branch per chunk, a restore point, before-and-after staging checklists, and merge on your sign-off; the repo supplies its own staging recipe |
+| `prs-to-main` | | | Chunks chosen from a pairwise merge-test of the open PRs, review of any unreviewed PR before staging, one tested branch per chunk, a restore point, before-and-after staging checklists, and merge on your sign-off; the repo supplies its own staging recipe |
 | `usage-pacing` | | | Reads the 5-hour and weekly usage windows, caps parallel agents, checkpoints agents at 80%, and resumes them after the reset |
 | `using-wills-skills` (router) | Overrides `finishing-a-development-branch` (always push and open a PR), `writing-plans` (choose the execution method instead of asking), and `brainstorming` (spec goes to an issue, not `docs/`) | Overrides `code-review` and `tdd` in favor of the single paths above | Standing preferences and the skill index |
 | `implementer`, `reviewer` agents | Preload `test-driven-development` and `verification-before-completion` | Reviewer preloads `code-review` | Sonnet by default; callers raise the model by risk |
