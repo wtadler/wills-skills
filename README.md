@@ -1,6 +1,6 @@
 # wills-skills
 
-A Claude Code plugin that takes an idea to merged, human-checked code, with you at the start and the end and free to walk away in between. You describe a feature; Claude grills you on the design and files a spec and tickets. It then works through the tickets on its own, for minutes or days, with an implementer and a separate reviewer per ticket. When it's done, it brings the resulting PRs back to you in a few chunks on staging, with a checklist of what to look at.
+A Claude Code plugin that takes an idea to merged, human-checked code, with you at the start and the end and free to walk away in between. You describe a feature; Claude grills you on the design and files a spec and tickets. It then works through the tickets on its own, for minutes or days, with an implementer and a separate reviewer per ticket. When it's done, it brings the resulting PRs back to you in a few chunks you can see running, with a checklist of what to look at.
 
 It is tailored to one setup: Claude Code in Claude Desktop on a Mac, on a Claude Pro or Max subscription, where usage is metered in a five-hour session window plus a weekly limit. The pacing reads those windows from Claude Desktop's local cache when the host offers no usage tool. Most of the rest works anywhere Claude Code and `gh` run, but long unattended runs assume that setup.
 
@@ -16,7 +16,7 @@ flowchart LR
   subgraph middle [You walk away: minutes to days]
     T[tickets-to-prs]
   end
-  subgraph finish [You, eyeballing staging]
+  subgraph finish [You, eyeballing the changes]
     P[prs-to-main]
   end
   idea([Idea]) --> G
@@ -29,7 +29,7 @@ Humans do two things a run can't: make design calls, and look at the result. The
 
 1. **`grill-to-tickets`: you, at the keyboard.** Claude grills you on the design one question at a time, each with its recommended answer, and measures the feature's impact on real data. It stops once for you to review the spec and ticket list together, then files them as a GitHub spec issue with ready-for-agent sub-issues. Every design question settled here is one the run won't have to guess at.
 2. **`tickets-to-prs`: you walk away.** One ticket takes minutes; a backlog can take days. Each ticket gets an implementer subagent that works test-first in its own worktree, and a separate reviewer subagent with fresh context. The PRs are stacked where tickets depend on each other. The run paces itself to your usage window: it checkpoints at 80% and resumes after the reset, so it never hits the limit mid-edit. Nothing merges.
-3. **`prs-to-main`: you, eyeballing staging.** Claude groups the open PRs into a few large chunks that don't conflict with each other. For each chunk, it builds and tests one combined branch, records a restore point, and deploys to staging. You get a checklist of where to click, what it did before, and what it should do now. Once you sign off, Claude merges the chunk. Production deploys stay yours.
+3. **`prs-to-main`: you, eyeballing the changes.** Claude groups the open PRs into a few large chunks that don't conflict with each other. For each chunk, it builds and tests one combined branch and puts it where you can see it: a staging environment, a preview deploy, or a local run, whichever your repo has. You get a checklist of where to click, what it did before, and what it should do now. Once you sign off, Claude merges the chunk. Production deploys stay yours.
 
 `implement`, `review`, and `usage-pacing` are the pieces the middle stage is built from, and each also works on its own.
 
