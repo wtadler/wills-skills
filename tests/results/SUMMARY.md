@@ -279,5 +279,7 @@ Text-only scenario in `tests/micro/prs-to-main/` (README there says why it is no
 | skill (v1) | 1 | PASS | Four chunks: {#51, #53+#54, #55}, {#52}, {#58}, {#56 as the user's production deploy}; #57 on the no-staging list; before checklist with link, today, after, and undo; email tested with the user's accounts. |
 | skill (v1) | 2 | PASS | Same chunks, but #56 before #58: v1's "go last, then cross-cutting UI work" read either way. |
 | skill (v1) | 3 | PASS | Same chunks as rep 1. |
+| skill (v2) | 4 | PASS | Prompt stops at chunk 1's Stop 2. Chunks {#51, #53+#54, #55}, {#52}, {#56 as the user's production deploy}, {#58 last}; #57 no-staging; before checklist with link, today, after, undo; nothing deployed before it. |
+| skill (v2) | 5 | PASS | Same chunks and order as rep 4; #56 built and tested, not deployed; email tested with the user's `+` aliases. |
 
 - `prs-to-main` skill versions: v1 = first draft after RED; v2 = REFACTOR: chunk order says production-shared and cross-cutting UI chunks "come after the rest" (the v1 wording was read both ways), word trims (body 578 words).
