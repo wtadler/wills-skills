@@ -24,4 +24,4 @@ Read `run-ledger.md` and `issues.md` in the scratchpad. Request keep-awake where
 - Stop any background process an agent left running once its branch is pushed.
 
 ## Close
-Summarize the PRs, each stack and its merge order, held numbers, blocked tickets with their reasons, and decisions taken; this summary may run longer than five lines. File follow-ups as issues labeled `needs-triage`. Save the run's lessons to memory. Merging into the default branch and restacking (`gh stack sync`) are gh-stack's work, and wait for the user's go-ahead.
+Summarize the PRs, each stack and its merge order, held numbers, blocked tickets with their reasons, and decisions taken; this summary may run longer than five lines. File follow-ups as issues labeled `needs-triage`. Save the run's lessons to memory. Getting the PRs into the default branch is wills-skills:prs-to-main, and waits for the user's go-ahead.

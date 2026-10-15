@@ -1,10 +1,37 @@
 # wills-skills
 
-A Claude Code plugin that turns an idea into reviewed pull requests with as little hand-holding as possible. You describe a feature; Claude grills you on the design, measures its real impact, files a spec issue and ready-for-agent tickets on GitHub, then works through the tickets with an implementer subagent and a separate reviewer subagent per ticket, opening stacked PRs and pacing itself to your Claude usage window so an unattended run checkpoints instead of hitting the limit mid-edit.
+A Claude Code plugin that takes an idea to merged, human-checked code, with you at the start and the end and free to walk away in between. You describe a feature; Claude grills you on the design and files a spec and tickets. It then works through the tickets on its own, for minutes or days, with an implementer and a separate reviewer per ticket. When it's done, it brings the resulting PRs back to you in a few chunks on staging, with a checklist of what to look at.
 
 It is tailored to one setup: Claude Code in Claude Desktop on a Mac, on a Claude Pro or Max subscription, where usage is metered in a five-hour session window plus a weekly limit. The pacing reads those windows from Claude Desktop's local cache when the host offers no usage tool. Most of the rest works anywhere Claude Code and `gh` run, but long unattended runs assume that setup.
 
 It is not a standalone skill set. It sits on top of [superpowers](https://github.com/obra/superpowers) and [mattpocock/skills](https://github.com/mattpocock/skills), loads their skills by name, and settles the places where the two disagree. Both must be installed.
+
+## The Pipeline
+
+```mermaid
+flowchart LR
+  idea([Idea]) --> G
+  subgraph start [You, at the keyboard]
+    G[grill-to-tickets]
+  end
+  G -- spec issue and tickets --> T
+  subgraph middle [You walk away: minutes to days]
+    T[tickets-to-prs]
+  end
+  T -- reviewed, stacked PRs --> P
+  subgraph finish [You, eyeballing staging]
+    P[prs-to-main]
+  end
+  P --> main([main])
+```
+
+Humans do two things a run can't: make design calls, and look at the result. The pipeline puts all of your time into those two places and none into the middle.
+
+1. **`grill-to-tickets`: you, at the keyboard.** Claude grills you on the design one question at a time, each with its recommended answer, and measures the feature's impact on real data. It stops once for you to review the spec and ticket list together, then files them as a GitHub spec issue with ready-for-agent sub-issues. Every design question settled here is one the run won't have to guess at.
+2. **`tickets-to-prs`: you walk away.** One ticket takes minutes; a backlog can take days. Each ticket gets an implementer subagent that works test-first in its own worktree, and a separate reviewer subagent with fresh context. The PRs are stacked where tickets depend on each other. The run paces itself to your usage window: it checkpoints at 80% and resumes after the reset, so it never hits the limit mid-edit. Nothing merges.
+3. **`prs-to-main`: you, eyeballing staging.** Claude groups the open PRs into a few large chunks that don't conflict with each other. For each chunk, it builds and tests one combined branch, records a restore point, and deploys to staging. You get a checklist of where to click, what it did before, and what it should do now. Once you sign off, Claude merges the chunk. Production deploys stay yours.
+
+`implement`, `review`, and `usage-pacing` are the pieces the middle stage is built from, and each also works on its own.
 
 ## The Idea
 
@@ -17,7 +44,7 @@ Installed together, they overlap and sometimes pull in opposite directions: two 
 
 1. **Picks a winner where they overlap**, through a short router injected at session start (`using-wills-skills`).
 2. **Sets standing preferences** so Claude asks fewer questions: it runs git and PRs itself, takes steps with no real trade-off and notes them, and asks only about real trade-offs, with a recommendation.
-3. **Adds the pipeline glue** neither upstream has: idea → spec issue → tickets → implement → independent review → stacked PRs, with usage pacing for long runs.
+3. **Adds the pipeline** neither upstream has (above), with usage pacing for long runs.
 
 ## What Comes From Where
 
@@ -26,7 +53,8 @@ Installed together, they overlap and sometimes pull in opposite directions: two 
 | `grill-to-tickets` | | `grilling`, `domain-modeling`, `research`; adapts `to-spec` and `to-tickets` | One question per round with a recommended answer, impact measured on real data, a single review stop, and publishing as a GitHub spec issue with native sub-issues and blocked-by links |
 | `implement` | `test-driven-development`, `verification-before-completion` | | Dispatch to an implementer subagent in a worktree, red evidence quoted per acceptance criterion, review before any PR, and a bounded fix loop that escalates the model |
 | `review` | Replaces `requesting-code-review` | `code-review` supplies the two axes and standards sources | One fresh-context reviewer for every diff, adversarial probes, must-fix and consider tags, and a reviewer model chosen by risk |
-| `ticket-factory` | The implementer-plus-reviewer loop of `subagent-driven-development` | Consumes the ready-for-agent tickets `grill-to-tickets` files | Backlog planning into stacks with [gh-stack](https://github.com/github/gh-stack), migration-number reservation, waves, worktree cleanup, and a run ledger |
+| `tickets-to-prs` (formerly `ticket-factory`) | The implementer-plus-reviewer loop of `subagent-driven-development` | Consumes the ready-for-agent tickets `grill-to-tickets` files | Backlog planning into stacks with [gh-stack](https://github.com/github/gh-stack), migration-number reservation, waves, worktree cleanup, and a run ledger |
+| `prs-to-main` | `verification-before-completion` | | Chunks chosen from a pairwise merge-test of the open PRs, review of any unreviewed PR before staging, one tested branch per chunk, a restore point, before-and-after staging checklists, and merge on your sign-off; the repo supplies its own staging recipe |
 | `usage-pacing` | | | Reads the 5-hour and weekly usage windows, caps parallel agents, checkpoints agents at 80%, and resumes them after the reset |
 | `using-wills-skills` (router) | Overrides `finishing-a-development-branch` (always push and open a PR), `writing-plans` (choose the execution method instead of asking), and `brainstorming` (spec goes to an issue, not `docs/`) | Overrides `code-review` and `tdd` in favor of the single paths above | Standing preferences and the skill index |
 | `implementer`, `reviewer` agents | Preload `test-driven-development` and `verification-before-completion` | Reviewer preloads `code-review` | Sonnet by default; callers raise the model by risk |
