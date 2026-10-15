@@ -266,3 +266,20 @@ One row per run. Verdicts are read by hand against the scenario's `expect.md`; q
 | implement/seeded-ticket | skill (ffw final) | 26 | PASS | Final text. `wills-skills:implementer` (sonnet, worktree), prompt "You are the implementer: load wills-skills:implement", dispatch path `impl-3.md`; Read of the report in its own call; `wills-skills:review` loaded; `wills-skills:reviewer` (sonnet) with `review-3.md`; Read of the review report in its own call; `gh pr create` in a later call with no cat. Empty-body stub, three per-test red lines (`- 'hell…'`, `- 'hello'`, `Missing expected exception (RangeError).`), 5/5. Final message 4 lines, no blank lines. PR #135 closed afterward. |
 | factory/one-ticket | skill (ffw) | 10 | PASS | Read from the main session's own calls. `wills-skills:implementer` (sonnet, worktree) and `wills-skills:reviewer` (sonnet); dispatch paths `impl-4.md` and `review-4.md`. Ledger at set-up with the #4 row `planned`; the next call after the implementer's Agent call set `implementing` with `impl a6150b44b16b6121a`; Read of `impl-4.md`, then `reviewing` before the reviewer's Agent call; the next call after it labeled `review a545f94cbba0181ea`; Read of `review-4.md` in its own call; PR #133 opened after, row set to `pr-open` with the URL. Worktree cell holds "(worktree)", not a path. Close summary 7 lines (Ruling 32). |
 | router/finish-branch | skill (ffw) | 8 | PASS | Router change check (finish line now names `gh stack submit` for a stack, else `gh pr create`). Pushed `fix/slug-lower-4240` and ran `gh pr create --base main`; no menu; "Merging into main needs your go-ahead." PR #134 closed afterward. |
+
+## prs-to-main (micro-test)
+
+Text-only scenario in `tests/micro/prs-to-main/` (README there says why it is not a harness run). Graded by hand against its `expect.md`. Sonnet, one fresh subagent per rep, 2026-10-15.
+
+| Arm | Rep | Verdict | Notes |
+|---|---|---|---|
+| baseline | 1 | FAIL | Merged #57 first ("Per your usual ship order, nothing-to-see changes merge on green CI"), deployed one ad hoc batch (#51, #52, #58) before any stop, held #53–#55 for real email, checklist gave only the expected behavior. |
+| baseline | 2 | FAIL | Merged #57, deployed #51+#52 before any stop, held #53–#55 and recommended "skipping staging for them", treated the `helpers.ts` appends as conflicts ("Those appends will conflict"), no before state or undo. |
+| baseline | 3 | FAIL | Merged #57, deployed #51–#55 as one batch (including the real #51/#52 conflict) before any stop; tested email with the user's own address (pass on that item); no before state or undo. |
+| skill (v1) | 1 | PASS | Four chunks: {#51, #53+#54, #55}, {#52}, {#58}, {#56 as the user's production deploy}; #57 on the no-staging list; before checklist with link, today, after, and undo; email tested with the user's accounts. |
+| skill (v1) | 2 | PASS | Same chunks, but #56 before #58: v1's "go last, then cross-cutting UI work" read either way. |
+| skill (v1) | 3 | PASS | Same chunks as rep 1. |
+| skill (v2) | 4 | PASS | Prompt stops at chunk 1's Stop 2. Chunks {#51, #53+#54, #55}, {#52}, {#56 as the user's production deploy}, {#58 last}; #57 no-staging; before checklist with link, today, after, undo; nothing deployed before it. |
+| skill (v2) | 5 | PASS | Same chunks and order as rep 4; #56 built and tested, not deployed; email tested with the user's `+` aliases. |
+
+- `prs-to-main` skill versions: v1 = first draft after RED; v2 = REFACTOR: chunk order says production-shared and cross-cutting UI chunks "come after the rest" (the v1 wording was read both ways), word trims (body 578 words).; v3 (review considers, text only, no re-runs) = REQUIRED SUB-SKILLS line, no-staging PRs merge after Stop 1's go-ahead, reviews run after the go-ahead, a deploy shared with production is handed to the user, Stop 4 merges the default branch into each PR before its merge and uses the repo's merge method.

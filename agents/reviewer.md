@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Reviews one branch read-only on two axes with adversarial probes and writes a report file. Dispatched by wills-skills:review and wills-skills:ticket-factory.
+description: Reviews one branch read-only on two axes with adversarial probes and writes a report file. Dispatched by wills-skills:review and wills-skills:tickets-to-prs.
 model: sonnet
 skills:
   - wills-skills:review

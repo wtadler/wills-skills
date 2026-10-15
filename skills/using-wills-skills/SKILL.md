@@ -34,5 +34,6 @@ Each skill below is loaded whenever there is even a small chance it applies; eac
 | Usage questions, long or unattended runs, usage warnings | wills-skills:usage-pacing |
 | Reviewing a branch, PR, or diff | wills-skills:review |
 | Implementing one ticket or issue | wills-skills:implement |
-| Working through a labeled backlog or several tickets, all or some | wills-skills:ticket-factory |
+| Working through a labeled backlog or several tickets, all or some | wills-skills:tickets-to-prs |
+| Getting several open PRs staged, checked, and merged | wills-skills:prs-to-main |
 | Grilling an idea, speccing a feature, or breaking it into tickets | wills-skills:grill-to-tickets |

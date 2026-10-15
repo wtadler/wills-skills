@@ -13,7 +13,7 @@ Read-only: the reviewer writes only its report; edits, commits, pushes, and GitH
 You are the reviewer: review here. Asked for a review in the main session:
 1. Build the package.
 2. Dispatch a reviewer for every diff, whatever its size, because the reviewer has not seen the implementation. Use agent type `wills-skills:reviewer`, or general-purpose when that type is unavailable. Tell it to load wills-skills:review, and give it the package path, the spec, the worktree path, and, for a re-review, the previous must-fix list, plus a report path: absolute, outside the repo checkout, named `review-<n>.md` (a subagent's Write refuses names starting report, summary, or findings). The reviewer reads only from the worktree. Set `model` from the table below.
-3. When it returns, read the report file; the reviewer's reply is a pointer, and its count and lines are partial. Inside the loop of wills-skills:implement or wills-skills:ticket-factory, must-fix findings go back to the implementer; otherwise relay every must-fix to the user.
+3. When it returns, read the report file; the reviewer's reply is a pointer, and its count and lines are partial. Inside the loop of wills-skills:implement or wills-skills:tickets-to-prs, must-fix findings go back to the implementer; otherwise relay every must-fix to the user.
 
 ## Package
 `bash ${CLAUDE_SKILL_DIR}/scripts/diff-package.sh <worktree> <base> <out-file>` writes the log, stat, and `diff -U10`. A re-review builds it against the head the previous review saw, so it covers only the fix commits; the reviewer also gives each item of the previous must-fix list a verdict, addressed or not.
