@@ -36,5 +36,11 @@ Answer each probe in writing:
 - Auth: who can call this, and can a lower role reach it?
 - Data loss: what does it delete or overwrite, and can that be undone?
 
+## Follow-ups
+The orchestrator files each finding deferred out of the PR; the reviewer does not. Check the finding against the current code first, then write it in the ticket format ([ticket-template.md](../grill-to-tickets/ticket-template.md)): What to Build, Seams, Acceptance Criteria, Blocked by.
+- No open question, meaning no options to choose between and no product decision: file it `ready-for-agent`, with `--blocked-by` on the issue of any unmerged PR it builds on.
+- Names options or a question: file it `needs-triage`, and state the question in the body.
+- One issue per independent fix. A speculative idea never rides along with a clear fix; it gets its own `needs-triage` issue.
+
 ## Reply
 The whole reply is at most five lines. Line 1: the report's must-fix count and its path. Lines 2–4: the worst three must-fix findings, one line each. Line 5: the decision for the orchestrator. The rest stays in the report.
