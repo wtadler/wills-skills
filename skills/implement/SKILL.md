@@ -23,8 +23,8 @@ Dispatch fields: ticket and cache path, branch, base or stack position, reserved
 1. Read the ticket (the cached copy your prompt names, else `gh issue view <n> --json title,body,comments`) and any parent.
 2. Branch before the first edit: your prompt's branch and base, else `<slug>-<n>` from the default branch.
 3. Measure an open sizing question with read-only queries; keep the numbers for the PR.
-4. Red first: one test per acceptance criterion, at the seam the ticket names, through external behavior. Every test goes red on its own assertion: stub a missing module with an empty body, and fix any test that passes against it. Run the tests as their own command, read the failures, and quote one line per test in the report's Red Evidence table; write the passing code in a later command.
-5. Commit and push the branch. The report stays out of the commit.
+4. Red first: one test per acceptance criterion, at the seam the ticket names, through external behavior. Every test goes red on its own assertion: stub a missing module with an empty body, and fix any test that passes against it. Run the tests as their own command, read the failures, and quote one line per test in the report's Red Evidence table; write the passing code in a later command. A made-up secret in a test or fixture is a low-entropy word (`test-api-key`), since a secret scanner that reads every branch fails every open PR on one realistic fake.
+5. A suite passes when its command exits 0: an unhandled error fails the run while every count reads green. Commit and push the branch. The report stays out of the commit.
 
 ## Checkpoint
 On a usage warning or checkpoint message, checkpoint per wills-skills:usage-pacing.
