@@ -22,6 +22,7 @@ Read `run-ledger.md` and `issues.md` in the scratchpad. Request keep-awake where
 - Use absolute paths and `git -C`; put `--repo <repo>` on every `gh issue` and `gh pr` call and `repos/<repo>/` in every `gh api` path. The session's cwd stays where it started.
 - Batch independent calls into one message.
 - Stop any background process an agent left running once its branch is pushed.
+- While wills-skills:prs-to-main stages a chunk, push nothing to its branches. A new top layer opens with `gh pr create --base <below>`, since `gh stack submit` pushes the whole stack.
 
 ## Close
 Summarize the PRs, each stack and its merge order, held numbers, blocked tickets with their reasons, and decisions taken; this summary may run longer than five lines. File follow-ups as wills-skills:review's Follow-ups section says. Save the run's lessons to memory. Getting the PRs into the default branch is wills-skills:prs-to-main, and waits for the user's go-ahead.
