@@ -2,7 +2,7 @@
   "upstreams": [
     {
       "url": "https://github.com/obra/superpowers",
-      "lastChecked": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "lastChecked": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
       "paths": [
         "skills/test-driven-development", "skills/verification-before-completion", "skills/using-git-worktrees",
         "skills/brainstorming", "skills/writing-plans", "skills/finishing-a-development-branch",
@@ -19,7 +19,7 @@
     },
     {
       "url": "https://github.com/github/gh-stack",
-      "lastChecked": "29a36d314be664583705f18e41cebdf2b61ad514",
+      "lastChecked": "f63271237b45fb121affa4ae69e4dd0b2785a37b",
       "paths": ["skills/gh-stack"]
     }
   ]
