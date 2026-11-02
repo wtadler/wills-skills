@@ -11,7 +11,7 @@
     },
     {
       "url": "https://github.com/mattpocock/skills",
-      "lastChecked": "49dd158d1076134a641b33efb035946536778336",
+      "lastChecked": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "paths": [
         "skills/productivity/grilling", "skills/engineering/domain-modeling", "skills/engineering/research",
         "skills/engineering/code-review", "skills/engineering/tdd", "skills/engineering/to-spec", "skills/engineering/to-tickets"
@@ -19,7 +19,7 @@
     },
     {
       "url": "https://github.com/github/gh-stack",
-      "lastChecked": "f63271237b45fb121affa4ae69e4dd0b2785a37b",
+      "lastChecked": "2a49e6751238633db504655d8a8eba3e433e827d",
       "paths": ["skills/gh-stack"]
     }
   ]
